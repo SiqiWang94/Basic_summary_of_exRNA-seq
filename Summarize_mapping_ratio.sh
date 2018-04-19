@@ -7,13 +7,13 @@ PATH0=/Share/home/wangsiqi/projects/01.HCC_biomarker/01.exRNA-seq/01.LuLab_HCC_e
 for i in `cat ./file_name`
 do
 
-        cat $PATH0/01.Pre_cutadapt/${i}/${i}.cutAdapt3.log | grep 'Total reads processed' | awk 'BEGIN{FS=OFS=":"}{print $2}' | sed 's/^    [ \t]*//g' | sed 's/,//g' >>01.Raw_reads;
+        cat $PATH0/01.Pre_cutadapt/${i}/${i}.cutAdapt.log | grep 'Total reads processed' | awk 'BEGIN{FS=OFS=":"}{print $2}' | sed 's/^    [ \t]*//g' | sed 's/,//g' >>01.Raw_reads;
 
 
-        cat $PATH0/01.Pre_cutadapt/${i}/${i}.cutAdapt3.log | grep 'Reads that were too short' | awk 'BEGIN{FS=OFS=":"}{print $2}' | sed 's/^    [ \t]*//g' | sed 's/,//g' | sed 's/ //g' >>02.reads_shorte
+        cat $PATH0/01.Pre_cutadapt/${i}/${i}.cutAdapt.log | grep 'Reads that were too short' | awk 'BEGIN{FS=OFS=":"}{print $2}' | sed 's/^    [ \t]*//g' | sed 's/,//g' | sed 's/ //g' >>02.reads_shorte
 r_than_36nt;
 
-        cat $PATH0/01.Pre_cutadapt/${i}/${i}.cutAdapt3.log | grep 'Reads written' | awk 'BEGIN{FS=OFS=":"}{print $2}' | sed 's/^    [ \t]*//g' | sed 's/,//g' | sed 's/ //g' >>03.Clean_reads;
+        cat $PATH0/01.Pre_cutadapt/${i}/${i}.cutAdapt.log | grep 'Reads written' | awk 'BEGIN{FS=OFS=":"}{print $2}' | sed 's/^    [ \t]*//g' | sed 's/,//g' | sed 's/ //g' >>03.Clean_reads;
 
         wc -l $PATH0/02.hsa_rRNA_bowtie2/${i}/${i}.no_rRNA.fq |awk 'reads=(($1/4)){printf("%d\n",reads)}' >>05.Kept_reads;
 
